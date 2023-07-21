@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    '[com.bp.cbe]': INFO
+    
+spring:
+  datasource:
+    url: jdbc:h2:mem:test1;DB_CLOSE_ON_EXIT=TRUE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    properties:
+      hibernet:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      schema-locations: classpath:script.sql.txt
+
+  course:
+    url: ${COURSE_URL:https://57e362f5-43d2-4cc2-9c35-7ed9376c98fe.mock.pstmn.io}
+    get:
+      byId = ${COURSE_GET_BY_ID:/{id}}
+      all = ${COURSE_GET_ALL:/}
